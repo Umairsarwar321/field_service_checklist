@@ -1,0 +1,91 @@
+<odoo>
+    <data>
+
+         <record id="buglar1" model="buglar.alarm.system">
+            <field name="name">Burglar Mother Board</field>
+         </record>
+         <record id="buglar2" model="buglar.alarm.system">
+            <field name="name">Alpha Numeric Key Pad</field>
+          </record>
+         <record id="buglar3" model="buglar.alarm.system">
+            <field name="name">Magnetic Door Contact ( D1 , D2 ) ( D4 )</field>
+         </record>
+         <record id="buglar4" model="buglar.alarm.system">
+            <field name="name">Door Alert ( D3 )</field>
+         </record>
+         <record id="buglar5" model="buglar.alarm.system">
+            <field name="name">Vibration Detector ( D5 )</field>
+         </record>
+         <record id="buglar6" model="buglar.alarm.system">
+            <field name="name">HOLD - UP Switch ( D6 )</field>
+         </record>
+         <record id="buglar7" model="buglar.alarm.system">
+            <field name="name">Smoke Detector ( D7 )</field>
+         </record>
+        <record id="buglar8" model="buglar.alarm.system">
+            <field name="name">Siren w/2 ight Inside Siren Silent Lamp</field>
+        </record>
+
+        <record id="cctv1" model="cctv.system">
+            <field name="name">Type of DVR</field>
+            <field name="is_camera">False</field>
+        </record>
+        <record id="cctv2" model="cctv.system">
+            <field name="name">Type of DVR Mobo</field>
+            <field name="is_camera">False</field>
+        </record>
+        <record id="cctv3" model="cctv.system">
+            <field name="name">Double IDE Socket/RAM</field>
+            <field name="is_camera">False</field>
+        </record>
+        <record id="cctv4" model="cctv.system">
+            <field name="name">Video CARD with---------- Input Channel</field>
+            <field name="is_camera">False</field>
+        </record>
+        <record id="cctv5" model="cctv.system">
+            <field name="name">Transaction Interface Card</field>
+            <field name="is_camera">False</field>
+        </record>
+        <record id="cctv6" model="cctv.system">
+            <field name="name">Flash Memory</field>
+            <field name="is_camera">False</field>
+        </record>
+        <record id="cctv7" model="cctv.system">
+            <field name="name">Hard Disk</field>
+            <field name="is_camera">False</field>
+        </record>
+        <record id="cctv8" model="cctv.system">
+            <field name="name">CAM # 1</field>
+            <field name="is_camera">True</field>
+        </record>
+        <record id="cctv9" model="cctv.system">
+            <field name="name">CAM # 2</field>
+            <field name="is_camera">True</field>
+        </record>
+        <record id="cctv10" model="cctv.system">
+            <field name="name">CAM # 3</field>
+            <field name="is_camera">True</field>
+        </record>
+        <record id="cctv11" model="cctv.system">
+            <field name="name">CAM # 4</field>
+            <field name="is_camera">True</field>
+        </record>
+
+        <record id="general1" model="general.information">
+            <field name="name">Interface Board (6) Six Fused</field>
+         </record>
+         <record id="general2" model="general.information">
+            <field name="name">Battery 12V/1.2 Ampere</field>
+          </record>
+         <record id="general3" model="general.information">
+            <field name="name">Power Regulator 12V/12 Ampere</field>
+         </record>
+         <record id="general4" model="general.information">
+            <field name="name">Transformer 110-220V AC/12 VDC</field>
+         </record>
+         <record id="general5" model="general.information">
+            <field name="name">STABILIZER / UPS</field>
+         </record>
+
+    </data>
+</odoo>

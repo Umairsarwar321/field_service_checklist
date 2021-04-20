@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="general_information_view_tree" model="ir.ui.view">
+        <field name="name">general.information.tree</field>
+        <field name="model">general.information</field>
+        <field name="arch" type="xml">
+            <tree string="General Information">
+                <field name="name"/>
+                <field name="general_info_qty"/>
+                <field name="general_info_status"/>
+                <field name="general_info_check_clean"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="general_information_view_form" model="ir.ui.view">
+        <field name="name">general.information.form</field>
+        <field name="model">general.information</field>
+        <field name="arch" type="xml">
+            <form string="General Information">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="general_info_qty"/>
+                            <field name="general_info_status"/>
+                        </group>
+                        <group>
+                            <field name="checklist_id"/>
+                            <field name="general_info_check_clean"/>
+                        </group>
+                    </group>
+                    <group><field name="general_info_note"/></group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_view_general_information">
+        <field name="name">General Information</field>
+        <field name="res_model">general.information</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id='menu_general_information' name='General Information'
+            parent='menu_atm' action='field_service_checklist.action_view_general_information' sequence="5"/>
+    
+</odoo>

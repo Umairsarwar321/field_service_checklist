@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="cctv_system_view_tree" model="ir.ui.view">
+        <field name="name">cctv.system.tree</field>
+        <field name="model">cctv.system</field>
+        <field name="arch" type="xml">
+            <tree string="CCTV System">
+                <field name="name"/>
+                <field name="cctv_qty"/>
+                <field name="cctv_status"/>
+                <field name="cctv_check_clean"/>
+                <field name="from_date" string="From Date" widget="date" optional="show"/>
+                <field name="upto_date" string="Upto Date" widget="date" optional="show"/>
+                <field name="day_cctv_vision"/>
+                <field name="night_cctv_vision"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="cctv_system_view_form" model="ir.ui.view">
+        <field name="name">cctv.system.form</field>
+        <field name="model">cctv.system</field>
+        <field name="arch" type="xml">
+            <form string="CCTV System">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" />
+                            <field name="cctv_qty"/>
+                            <field name="cctv_status"/>
+                            <field name="cctv_check_clean"/>
+                        </group>
+                        <group>
+                            <field name="checklist_id"/>
+                            <field name="is_camera"/>
+                            <field name="day_cctv_vision" attrs="{'invisible': [('is_camera','!=',True)]}"/>
+                            <field name="night_cctv_vision" attrs="{'invisible': [('is_camera','!=',True)]}"/>
+                        </group>
+                    </group>
+                    <group><field name="cctv_note"/></group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_view_cctv_system">
+        <field name="name">CCTV System</field>
+        <field name="res_model">cctv.system</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id='menu_cctv_system' name='CCTV Camera'
+            parent='menu_atm' action='field_service_checklist.action_view_cctv_system' sequence="3"/>
+
+    <record id="cctv_system_view_description_tree" model="ir.ui.view">
+        <field name="name">cctv.system.description.tree</field>
+        <field name="model">cctv.system.description</field>
+        <field name="arch" type="xml">
+            <tree string="CCTV System">
+                <field name="name"/>
+                <field name="cctvdes_qty"/>
+                <field name="cctvdes_status"/>
+                <field name="cctvdes_check_clean"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="cctv_system_description_view_form" model="ir.ui.view">
+        <field name="name">cctv.system.description.form</field>
+        <field name="model">cctv.system.description</field>
+        <field name="arch" type="xml">
+            <form string="CCTV System Description">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" />
+                            <field name="cctvdes_qty"/>
+                            <field name="cctvdes_status"/>
+                        </group>
+                        <group>
+                            <field name="cctvdes_check_clean"/>
+                            <field name="checklist_id"/>
+                        </group>
+                    </group>
+                    <group><field name="cctvdes_note"/></group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_view_cctvdes_system">
+        <field name="name">CCTV System Description</field>
+        <field name="res_model">cctv.system.description</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id='menu_cctv_system_des' name='CCTV Description'
+            parent='menu_atm' action='field_service_checklist.action_view_cctvdes_system' sequence="4"/>
+</odoo>

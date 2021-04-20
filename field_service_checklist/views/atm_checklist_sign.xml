@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="assets_backend" name="atm_checklist_sign assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <script type="text/javascript" src="/field_service_checklist/static/src/js/checklist_sign.js"></script>
+                <script type="text/javascript" src="/field_service_checklist/static/src/js/fabric.min.js"></script>
+                <link rel="stylesheet" href="/field_service_checklist/static/src/css/backend.css" id="pos-stylesheet"/>
+            </xpath>
+        </template>
+
+    </data>
+</odoo>

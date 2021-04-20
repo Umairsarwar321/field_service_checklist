@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="atm_maintenance_report">
+         <t t-call="web.external_layout">
+         <div class="page">
+             <style>
+                        table,tbody,thead, tr,th,td{
+                            border:1px solid black;
+                        }
+                        tr,td,th{
+                            height:15%;
+                            padding: 0px;
+                            margin: 0px;
+                        }
+                        p{
+                            margin: 5px;
+                            color:black;
+                        }
+                        span{
+                            margin: 5px;
+                            color:black;
+                        }
+                        table .header_title{
+                            font-size:25px;
+                            font-color:Black;
+                            font-weight: 800;
+                        }
+                        .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+                            padding: 2px;
+                            line-height: 1;
+                        }
+<!--                        .rotate {-->
+<!--                          text-align: center;-->
+<!--                          white-space: nowrap;-->
+<!--                          vertical-align: middle;-->
+<!--                          width: 1.5em;-->
+<!--                        }-->
+<!--                        .rotate div {-->
+<!--                             -moz-transform: rotate(-90.0deg);  /* FF3.5+ */-->
+<!--                               -o-transform: rotate(-90.0deg);  /* Opera 10.5 */-->
+<!--                          -webkit-transform: rotate(-90.0deg);  /* Saf3.1+, Chrome */-->
+<!--                                     filter:  progid:DXImageTransform.Microsoft.BasicImage(rotation=0.083);  /* IE6,IE7 */-->
+<!--                                 -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=0.083)"; /* IE8 */-->
+<!--                                 margin-left: -10em;-->
+<!--                                 margin-right: -10em;-->
+<!--                        }-->
+             </style>
+<!--             <div class="row">-->
+             <div class="">
+                <div class="row" style="margin-top: 20px;">
+                    <div class="col-6">
+                        <b>Customer Name :</b>
+                        <t t-esc="o.partner_id.name"/>
+                    </div>
+                    <div class="col-6">
+                        <b>ATM Code No :</b>
+                        <t t-esc="o.atm_code_no"/>
+                    </div>
+                </div>
+                 <div class="row" style="margin-top: 20px;">
+                    <div class="col-6">
+                        <b>ATM Name :</b>
+                        <t t-esc="o.name"/>
+                    </div>
+                    <div class="col-6">
+                        <b>City :</b>
+                        <t t-esc="o.city"/>
+                    </div>
+                </div>
+             </div>
+             <br/><br/>
+             <table class="table" style="font-size:15px">
+                    <tr style="background-color:darkgray;">
+                        <td style="padding: 5px;line-height: 0.5;text-align:center;" colspan="8">
+                            <span><center><b>ATM Preventive Maintenance Report</b></center></span>
+                        </td>
+                    </tr>
+                    <t t-if="o.buglar_alarm_line">
+                    <tr style="background-color:darkgray;">
+                        <td style="padding: 2px;line-height: 0.5;text-align:center;" colspan="8">
+                            <span><center><b>Buglar Alarm System</b></center></span>
+                        </td>
+                    </tr>
+                     <tr>
+                        <td style="background-color:darkgray;line-height: 0.5; width:30%;">
+                            <span><center><b>Devices Description</b></center></span>
+                        </td>
+                        <td style="background-color:darkgray; line-height: 0.5; ">
+                            <span><center><b>Qty.</b></center></span>
+                        </td>
+                        <td style="background-color:darkgray; line-height: 0.5; ">
+                            <span><center><b>Status</b></center></span>
+                        </td>
+                        <td style="background-color:darkgray; line-height: 0.5; " colspan="2">
+                            <span><center><b>Cheeked / Cleaned</b></center></span>
+                        </td>
+                        <td style="background-color:darkgray;width:30%; line-height: 0.5; " colspan="2">
+                            <span><center><b>Note</b></center></span>
+                        </td>
+                    </tr>
+                     <t t-foreach="o.buglar_alarm_line" t-as="l">
+                         <tr>
+                             <td style="padding: 2px;line-height: 1;width:10%;text-align:center;">
+                                <span t-esc="l.name"/>
+                            </td>
+                             <td style="padding: 2px;line-height: 1;width:10%;text-align:center;">
+                                <span t-esc="l.alarm_qty"/>
+                            </td>
+                             <td style="padding: 2px;line-height: 1;width:10%;text-align:center;">
+                                <span t-esc="l.alarm_status"/>
+                            </td>
+                             <td style="padding: 2px;line-height: 1;width:10%;text-align:center;" colspan="2">
+                                <span t-esc="l.alarm_check_clean"/>
+                            </td><td style="padding: 2px;line-height: 1;width:10%;text-align:center;width:30%;" colspan="2">
+                                <span t-esc="l.alarm_note"/>
+                            </td>
+
+                         </tr>
+                     </t>
+                    </t>
+                    <t t-if="o.cctv_system_line or o.cctvdes_system_line">
+                    <tr style="background-color:darkgray;">
+                        <td style="padding: 2px;line-height: 0.5 ;text-align:center;" colspan="8">
+                            <span><center><b>CCTV System</b></center></span>
+                        </td>
+                    </tr>
+                     <t t-if="o.cctvdes_system_line">
+                     <tr>
+                        <td style="background-color:darkgray;width:30%;">
+                            <span><center><b>Devices Description</b></center></span>
+                        </td>
+                        <td style="background-color:darkgray;">
+                            <span><center><b>Qty.</b></center></span>
+                        </td>
+                        <td style="background-color:darkgray;">
+                            <span><center><b>Status</b></center></span>
+                        </td>
+                        <td style="background-color:darkgray;" colspan="2">
+                            <span><center><b>Cheeked / Cleaned</b></center></span>
+                        </td>
+                        <td style="background-color:darkgray;width:30%;" colspan="2">
+                            <span><center><b>Note</b></center></span>
+                        </td>
+                    </tr>
+                         <t t-foreach="o.cctvdes_system_line" t-as="l">
+                             <tr>
+                                 <td style="padding: 2px;line-height: 1;width:10%;text-align:center;">
+                                    <span t-esc="l.name"/>
+                                </td>
+                                 <td style="padding: 2px;line-height: 1;width:10%;text-align:center;">
+                                    <span t-esc="l.cctvdes_qty"/>
+                                </td>
+                                 <td style="padding: 2px;line-height: 1;width:10%;text-align:center;">
+                                    <span t-esc="l.cctvdes_status"/>
+                                </td>
+                                 <td style="padding: 2px;line-height: 1;width:10%;text-align:center;" colspan="2">
+                                    <span t-esc="l.cctvdes_check_clean"/>
+                                </td><td style="padding: 2px;line-height: 1;width:10%;text-align:center;width:30%;" colspan="2">
+                                    <span t-esc="l.cctvdes_note"/>
+                                </td>
+
+                             </tr>
+                         </t>
+                     </t>
+                    <t t-if="o.cctv_system_line">
+                     <tr>
+                        <td style="background-color:darkgray;width:30%; line-height: 0.8; ">
+                            <span><center><b>Camera Description</b></center></span>
+                        </td>
+                        <td style="background-color:darkgray; line-height: 0.8; ">
+                            <span><center><b>Qty.</b></center></span>
+                        </td>
+                        <td style="background-color:darkgray; line-height: 0.8; ">
+                            <span><center><b>Status</b></center></span>
+                        </td>
+                        <td style="background-color:darkgray; line-height: 0.8; " colspan="2">
+                            <span><center><b>Cheeked / Cleaned / Pasitien</b></center></span>
+                        </td>
+                        <td style="background-color:darkgray; line-height: 0.8; ">
+                            <span><center><b>Day Vision</b></center></span>
+                        </td>
+                         <td style="background-color:darkgray; line-height: 0.8; ">
+                            <span><center><b>Night Vision</b></center></span>
+                        </td>
+                    </tr>
+                     <t t-foreach="o.cctv_system_line" t-as="l">
+                             <tr>
+                                 <td style="padding: 2px;line-height: 1;width:10%;text-align:center;">
+                                    <span t-esc="l.name"/>
+                                </td>
+                                 <td style="padding: 2px;line-height: 1;width:10%;text-align:center;">
+                                    <span t-esc="l.cctv_qty"/>
+                                </td>
+                                 <td style="padding: 2px;line-height: 1;width:10%;text-align:center;">
+                                    <span t-esc="l.cctv_status"/>
+                                </td>
+                                 <td style="padding: 2px;line-height: 1;width:10%;text-align:center;" colspan="2">
+                                    <span t-esc="l.cctv_check_clean"/>
+                                </td>
+                                 <td style="padding: 2px;line-height: 1;width:10%;text-align:center;">
+                                     <t t-if="l.day_cctv_vision"><span>Yes</span></t>
+                                     <t t-if="not l.day_cctv_vision"><span>No</span></t>
+                                </td>
+                                 <td style="padding: 2px;line-height: 1;width:10%;text-align:center;">
+                                     <t t-if="l.night_cctv_vision"><span>Yes</span></t>
+                                     <t t-if="not l.night_cctv_vision"><span>No</span></t>
+                                </td>
+                             </tr>
+                     </t>
+                    </t>
+                    </t>
+                     <tr>
+                        <td style="background-color:darkgray; line-height: 0.5; ">
+                            <span><center><b>Recording Statas</b></center></span>
+                        </td>
+                        <td style="background-color:darkgray; line-height: 0.5; ">
+                            <span><center><b>Date</b></center></span>
+                        </td>
+                        <td style="background-color:darkgray; line-height: 0.5; ">
+                            <span><center><b>Time</b></center></span>
+                        </td>
+                        <td style="background-color:darkgray; line-height: 0.5; ">
+                            <span><center><b> &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; </b></center></span>
+                        </td>
+                        <td style="background-color:darkgray; line-height: 0.5; ">
+                            <span><center><b>Date</b></center></span>
+                        </td>
+                         <td style="background-color:darkgray; line-height: 0.5; " colspan="2">
+                            <span><center><b>Time</b></center></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 2px;line-height: 1;width:10%;text-align:center;">
+                            <span><b>From</b></span>
+                        </td>
+                        <t t-if="o.from_date">
+                            <t t-set="date_from" t-value="datetime.datetime.strptime(str(o.from_date), '%Y-%m-%d %H:%M:%S')"/>
+                            <td style="padding: 2px;line-height: 1;width:10%;text-align:center;">
+                                <span t-esc="date_from.day"/>-<span t-esc="date_from.month"/>-<span t-esc="date_from.year"/>
+                            </td>
+                        </t>
+                        <t t-if="not o.from_date">
+                            <td style="padding: 2px;line-height: 1;width:10%;text-align:center;">
+                                <span/>
+                            </td>
+                        </t>
+                        <t t-if="o.from_date">
+                            <t t-set="date_from" t-value="datetime.datetime.strptime(str(o.from_date), '%Y-%m-%d %H:%M:%S')"/>
+                            <td style="padding: 2px;line-height: 1;width:10%;text-align:center;">
+                                <span t-esc="date_from.hour"/>:<span t-esc="date_from.minute"/>:<span t-esc="date_from.second"/>
+                            </td>
+                        </t>
+                        <t t-if="not o.from_date">
+                            <td style="padding: 2px;line-height: 1;width:10%;text-align:center;">
+                                <span/>
+                            </td>
+                        </t>
+                        <td style="padding: 2px;line-height: 1;width:10%;text-align:center;">
+                            <span><b> UP TO </b></span>
+                        </td>
+                        <t t-if="o.upto_date">
+                            <t t-set="date_upto" t-value="datetime.datetime.strptime(str(o.upto_date), '%Y-%m-%d %H:%M:%S')"/>
+                            <td style="padding: 2px;line-height: 1;width:10%;text-align:center;">
+                                <span t-esc="date_upto.day"/>-<span t-esc="date_upto.month"/>-<span t-esc="date_upto.year"/>
+                            </td>
+                        </t>
+                        <t t-if="not o.upto_date">
+                            <td style="padding: 2px;line-height: 1;width:10%;text-align:center;">
+                                <span/>
+                            </td>
+                        </t>
+                        <t t-if="o.upto_date">
+                            <t t-set="date_upto" t-value="datetime.datetime.strptime(str(o.upto_date), '%Y-%m-%d %H:%M:%S')"/>
+                            <td style="padding: 2px;line-height: 1;width:10%;text-align:center;" colspan="2">
+                                <span t-esc="date_upto.hour"/>:<span t-esc="date_upto.minute"/>:<span t-esc="date_upto.second"/>
+                            </td>
+                        </t>
+                        <t t-if="not o.upto_date">
+                            <td style="padding: 2px;line-height: 1;width:10%;text-align:center;" colspan="2">
+                                <span/>
+                            </td>
+                        </t>
+                    </tr>
+                    <t t-if="o.general_info_line">
+                    <tr style="background-color:darkgray;">
+                        <td style="padding: 2px;line-height: 0.5;text-align:center;" colspan="8">
+                            <span><center><b>General Information</b></center></span>
+                        </td>
+                    </tr>
+                     <tr>
+                        <td style="background-color:darkgray; line-height: 0.5; width:30%;">
+                            <span><center><b>Devices Description</b></center></span>
+                        </td>
+                        <td style="background-color:darkgray; line-height: 0.5; ">
+                            <span><center><b>Qty.</b></center></span>
+                        </td>
+                        <td style="background-color:darkgray; line-height: 0.5; ">
+                            <span><center><b>Status</b></center></span>
+                        </td>
+                        <td style="background-color:darkgray; line-height: 0.5; " colspan="2">
+                            <span><center><b>Cheeked / Cleaned</b></center></span>
+                        </td>
+                        <td style="background-color:darkgray;width:30%; line-height: 0.5; " colspan="2">
+                            <span><center><b>Note</b></center></span>
+                        </td>
+                    </tr>
+                     <t t-foreach="o.general_info_line" t-as="l">
+                         <tr>
+                             <td style="padding: 2px;line-height: 1;width:10%;text-align:center;width:30%;">
+                                <span t-esc="l.name"/>
+                            </td>
+                             <td style="padding: 2px;line-height: 1;width:10%;text-align:center;">
+                                <span t-esc="l.general_info_qty"/>
+                            </td>
+                             <td style="padding: 2px;line-height: 1;width:10%;text-align:center;">
+                                <span t-esc="l.general_info_status"/>
+                            </td>
+                             <td style="padding: 2px;line-height: 1;width:10%;text-align:center;" colspan="2">
+                                <span t-esc="l.general_info_check_clean"/>
+                            </td><td style="padding: 2px;line-height: 1;width:10%;text-align:center;width:30%;" colspan="2">
+                                <span t-esc="l.general_info_note"/>
+                            </td>
+
+                         </tr>
+                     </t>
+                    </t>
+                    <tr style="background-color:darkgray;">
+                        <td style="padding: 2px;line-height: 0.5;text-align:center;" colspan="8">
+                            <span><center><b>GENERRAL INFORMATION</b></center></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 2px;line-height: 1;text-align:left;" colspan="3">
+                            <span>Time Different of ATM :</span><span t-esc="o.time_diff_of_atm"/>
+                        </td>
+                        <td style="padding: 2px;line-height: 1;text-align:left;" colspan="4">
+                            <span>Type of Machine :</span><span t-esc="o.type_of_machine"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 2px;line-height: 1;text-align:left;" colspan="3">
+                            <span>Burglar Software :</span><span t-esc="o.burglar_software"/>
+                        </td>
+                        <td style="padding: 2px;line-height: 1;text-align:left;" colspan="4">
+                            <span>Clock Battery of Sicep MOBO :</span><span t-esc="o.clock_battery_of_sicep_mobo"/><span> Volts</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 2px;line-height: 1;text-align:left;" colspan="3">
+                            <span>Status of A/C System :</span><span t-esc="o.status_of_ac_system"/>
+                        </td>
+                        <td style="padding: 2px;line-height: 1;text-align:left;" colspan="4">
+                            <span>Status of Glass Cover Camera # 1 :</span><span t-esc="o.status_of_glass_cover_camera"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 2px;line-height: 1;text-align:left;" colspan="3">
+                            <span>ATM Machine IP Address :</span><span t-esc="o.atm_machine_ip_address"/>
+                        </td>
+                        <td style="padding: 2px;line-height: 1;text-align:left;" colspan="4">
+                            <span>Status of Transaction Link :</span><span t-esc="o.status_of_transaction_link"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 2px;line-height: 1;text-align:left;" colspan="3">
+                            <span>Burglar Alarm IP Address :</span><span t-esc="o.burglar_alarm_ip_address"/>
+                        </td>
+                        <td style="padding: 2px;line-height: 1;text-align:left;" colspan="4">
+                            <span>Status of Burglar Link :</span><span t-esc="o.status_of_burglar_link"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 2px;line-height: 1;text-align:left;" colspan="3">
+                            <span>CCTV System IP Address :</span><span t-esc="o.cctv_system_ip_address"/>
+                        </td>
+                        <td style="padding: 2px;line-height: 1;text-align:left;" colspan="4">
+                            <span>Status of CCTV Link :</span><span t-esc="o.status_of_cctv_link"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 2px;line-height: 1;text-align:left;" colspan="1">
+                            <span>to DVR :</span><span t-esc="o.to_dvr"/>
+                        </td>
+                        <td style="padding: 2px;line-height: 1;text-align:left;" colspan="2">
+                            <span>Room Temperature :</span><span t-esc="o.room_temp"/>
+                        </td>
+                        <td style="padding: 2px;line-height: 1;text-align:left;" colspan="4">
+                            <span>CCTV Software :</span><span t-esc="o.cctv_software"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 2px;line-height: 1;text-align:left;" colspan="3">
+                            <span>Coordinates North :</span><span t-esc="o.coordinates_north"/>
+                        </td>
+                        <td style="padding: 2px;line-height: 1;text-align:left;" colspan="4">
+                            <span>Coordinates East :</span><span t-esc="o.coordivates_east"/>
+                        </td>
+                    </tr>
+<!--                         <tr>-->
+<!--                             <td class='rotate' rowspan="20"><div><b>Buglar Alarm System</b></div></td>-->
+<!--                         </tr>-->
+            </table>
+             <br/>
+             <div class="">
+                <div class="row" style="margin-top: 20px;">
+                    <div class="col-6">
+                        <b>Remark's:</b>
+                    </div>
+                </div>
+             </div>
+             <br/><br/>
+             <div class="">
+                <div class="row" style="margin-top: 20px;">
+                    <div class="col-6">
+                        <b>Technician Name:</b>
+                    </div>
+                    <div class="col-6">
+                        <b>Custodian Name:</b>
+                    </div>
+                </div>
+                 <div class="row" style="margin-top: 20px;">
+                    <div class="col-6">
+                        <b>Date Visit:</b>
+                    </div>
+                    <div class="col-6">
+                        <b>Signature of Custodian:</b><t t-if="o.signature"><img t-att-src="'data:image/png;base64,%s' % to_text(o.signature)" widget="image" style="height: 60px;"/></t>
+
+                    </div>
+                </div>
+             </div>
+
+         </div>
+             </t>
+    </template>
+
+    <template id="atm_checklist_report">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="field_service_checklist.atm_maintenance_report"/>
+            </t>
+        </t>
+    </template>
+
+</odoo>

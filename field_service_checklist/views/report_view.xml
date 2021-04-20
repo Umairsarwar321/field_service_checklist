@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report
+                id="report_atm_maintenance_report"
+                string="ATM Maintenance Report"
+                model="atm.checklist"
+                report_type="qweb-pdf"
+                file="field_service_checklist.atm_checklist_report"
+                paperformat="field_service_checklist.checklist_paperformat"
+                name="field_service_checklist.atm_checklist_report"/>
+
+        <report
+                id="report_atm_maintenance_report_field_service"
+                string="ATM Maintenance Report"
+                model="project.task"
+                report_type="qweb-pdf"
+                file="field_service_checklist.atm_checklist_report_fieldservice"
+                paperformat="field_service_checklist.checklist_paperformat"
+                name="field_service_checklist.atm_checklist_report_fieldservice"/>
+    </data>
+</odoo>

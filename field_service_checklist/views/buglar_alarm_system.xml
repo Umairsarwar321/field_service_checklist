@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="buglar_alarm_system_view_tree" model="ir.ui.view">
+        <field name="name">buglar.alarm.system.tree</field>
+        <field name="model">buglar.alarm.system</field>
+        <field name="arch" type="xml">
+            <tree string="Buglar Alarm System">
+                <field name="name"/>
+                <field name="alarm_qty"/>
+                <field name="alarm_status"/>
+                <field name="alarm_check_clean"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="buglar_alarm_system_view_form" model="ir.ui.view">
+        <field name="name">buglar.alarm.system.form</field>
+        <field name="model">buglar.alarm.system</field>
+        <field name="arch" type="xml">
+            <form string="Buglar Alarm System">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" />
+                            <field name="alarm_qty"/>
+                            <field name="alarm_status"/>
+                            <field name="alarm_check_clean"/>
+                        </group>
+                        <group>
+                            <field name="checklist_id"/>
+                        </group>
+                    </group>
+                    <group><field name="alarm_note"/></group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_view_buglar_alarm_system">
+        <field name="name">Buglar Alarm System</field>
+        <field name="res_model">buglar.alarm.system</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+    <menuitem id='menu_buglar_alarm_system' name='Buglar Alarm'
+            parent='menu_atm' action='field_service_checklist.action_view_buglar_alarm_system' sequence="2"/>
+</odoo>

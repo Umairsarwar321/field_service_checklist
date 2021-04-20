@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_buglar_alarm_system,access_buglar_alarm_system,model_buglar_alarm_system,,1,1,1,1
+access_cctv_system,access_cctv_system,model_cctv_system,,1,1,1,1
+access_general_information,access_general_information,model_general_information,,1,1,1,1
+access_atm_checklist,access_atm_checklist,model_atm_checklist,,1,1,1,1
+access_cctv_system_description,access_cctv_system_description,model_cctv_system_description,,1,1,1,1
+

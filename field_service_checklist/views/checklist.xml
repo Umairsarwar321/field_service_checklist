@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="atm_checklist_view_tree" model="ir.ui.view">
+        <field name="name">atm.checklist.tree</field>
+        <field name="model">atm.checklist</field>
+        <field name="arch" type="xml">
+            <tree string="ATM Checklist">
+                <field name="name"/>
+                <field name="atm_code_no"/>
+                <field name="partner_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="atm_checklist_view_form" model="ir.ui.view">
+        <field name="name">atm.checklist.form</field>
+        <field name="model">atm.checklist</field>
+        <field name="arch" type="xml">
+            <form string="ATM Checklist">
+                <header>
+                    <button name="signature_dummy" string="Add Signature" invisible="0"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" />
+                            <field name="atm_code_no"/>
+                            <field name="from_date"/>
+                            <field name="signature" widget="image" options="{'size': [90, 90]}"/>
+                        </group>
+                        <group>
+                            <field name="partner_id"/>
+                            <field name="city"/>
+                            <field name="upto_date"/>
+                            <field name="company_id"/>
+                        </group>
+                    </group>
+                    <notebook colspan="4">
+                            <page name="buglar_alarm_system" string="Buglar Alarm System">
+                                <field name="buglar_alarm_line">
+                                    <tree string="Buglar Alarm System Lines" editable="bottom">
+                                        <field name="name" />
+                                        <field name="alarm_qty"/>
+                                        <field name="alarm_status"/>
+                                        <field name="alarm_check_clean"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page name="cctv_system" string="CCTV Camera">
+                                <field name="cctv_system_line">
+                                    <tree string="CCTV Camera System Lines" editable="bottom">
+                                        <field name="name" />
+                                        <field name="cctv_qty"/>
+                                        <field name="cctv_status"/>
+                                        <field name="cctv_check_clean"/>
+                                        <field name="day_cctv_vision"/>
+                                        <field name="night_cctv_vision"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page name="cctv_system_des" string="CCTV Description">
+                                <field name="cctvdes_system_line">
+                                    <tree string="CCTV Description System Lines" editable="bottom">
+                                        <field name="name" />
+                                        <field name="cctvdes_qty"/>
+                                        <field name="cctvdes_status"/>
+                                        <field name="cctvdes_check_clean"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page name="genera_information" string="General Information">
+                                <field name="general_info_line">
+                                    <tree string="General Information Lines" editable="bottom">
+                                        <field name="name"/>
+                                        <field name="general_info_qty"/>
+                                        <field name="general_info_status"/>
+                                        <field name="general_info_check_clean"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page name="extra_genera_information" string="Extra General Information">
+                               <group string="General Information">
+                                <group>
+                                    <field name="time_diff_of_atm"/>
+                                    <field name="burglar_software"/>
+                                    <field name="status_of_ac_system"/>
+                                    <field name="atm_machine_ip_address"/>
+                                    <field name="burglar_alarm_ip_address"/>
+                                    <field name="cctv_system_ip_address"/>
+                                    <field name="to_dvr"/>
+                                    <field name="cctv_software"/>
+                                    <field name="coordinates_north"/>
+                                </group>
+                                <group>
+                                    <field name="room_temp"/>
+                                    <field name="type_of_machine"/>
+                                    <field name="clock_battery_of_sicep_mobo"/>
+                                    <field name="status_of_glass_cover_camera"/>
+                                    <field name="status_of_transaction_link"/>
+                                    <field name="status_of_burglar_link"/>
+                                    <field name="status_of_cctv_link"/>
+                                    <field name="coordivates_east"/>
+                                </group>
+                            </group>
+                            </page>
+                        </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_view_atm_checklist">
+        <field name="name">ATM Checklist</field>
+        <field name="res_model">atm.checklist</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_atm" name="ATM" parent="industry_fsm.fsm_menu_root" sequence="19"/>
+    <menuitem id="menu_atm_checklist" name="ATM Checklist" parent="menu_atm"
+              action="field_service_checklist.action_view_atm_checklist" sequence="1"/>
+
+    <record id="view_task_form2_inherit_atm_checklist" model="ir.ui.view">
+        <field name="name">project.task.form</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='legend_done']" position="before">
+                <field name="atm_checklist_id"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
